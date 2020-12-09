@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: darwpy
+Version: 0.0.1
+Summary: A package for optimisation
+Home-page: UNKNOWN
+Author: Andreas Kranis
+Author-email: ...
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: optimization
+Classifier: genetic algorithms
+Classifier: Topic :: Scientific/Engineering :: Mathematics
