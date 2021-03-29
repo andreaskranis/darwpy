@@ -2,9 +2,9 @@
 
 A light-weight, yet flexible library for optimisation using Evolutionary Algorithms. The library provides the functionality to monitor convergence and enable user to get an idea whether a global optimal has been reached. The implementation is designed to enable control of the underlying methods and parameters over the iterative process (e.g tweak the selection process). 
 
-Currently only a Genetic Algorithm has been fully implemented. An experimental implementation of the (Firefly optimisation algorithm)[https://en.wikipedia.org/wiki/Firefly_algorithm] is also included. More algorthms, such as the Differential Evolution, will be implemented.
+Currently only a Genetic Algorithm has been fully implemented. An experimental implementation of the [Firefly optimisation algorithm](https://en.wikipedia.org/wiki/Firefly_algorithm)is also included. More algorthms, such as the Differential Evolution, will be implemented.
 
-(Yabox)[https://github.com/pablormier/yabox] has been used as a paradigm for implementing Evolutionary Algorithms in Python. Darwpy models can be adapted to yabox ones and vice-versa. Check the notebooks for examples. The formulaiton of the test problems is heavily based from the code provided in yabox.
+[Yabox](ttps://github.com/pablormier/yabox) has been used as a paradigm for implementing Evolutionary Algorithms in Python. Darwpy models can be adapted to yabox ones and vice-versa. Check the notebooks for examples. The formulaiton of the test problems is heavily based from the code provided in yabox.
 
 ![Optimasation_example](docs/_static/Figure_2.png?raw=true)
 
