@@ -23,7 +23,7 @@ def main():
     CHOICE='CrossInTray'
     problem = classes[CHOICE]()
     
-    pop,fitness = d.GA(problem.domain,problem.evaluate,N=60,generations=2000)
+    pop,fitness,slope = d.GA(problem.domain,problem.evaluate,N=60,generations=2000)
     
 
 

@@ -1,5 +1,6 @@
-#!/usr/bin/env python3
 
+import sys
+import inspect
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -26,6 +27,7 @@ surfaceParams = dict(
 )
 
 class BaseProblem(object):
+    """Derived from yabox: https://github.com/pablormier/yabox/blob/master/yabox/problems/base.py """
     def __init__(self, dim=None, bounds=None, default_bounds=(-1, 1), name=None):
         if bounds is None:
             bounds = [default_bounds]
@@ -77,6 +79,7 @@ class BaseProblem(object):
 
     def plot3d(self, points=100, sol=[], contour_levels=20, ax3d=None, figsize=(12, 8),view_init=None, surface_kwds=None, contour_kwds=None):
         from mpl_toolkits.mplot3d import Axes3D
+        
         contour_settings = dict(contourParams)
         surface_settings = dict(surfaceParams)
         if contour_kwds is not None:
@@ -109,8 +112,7 @@ class BaseProblem(object):
         if len(sol):
             Z = self.evaluate(sol[:2])
             ax.scatter(sol[0],sol[1],Z,'gD')
-            #plt.text(sol[0],sol[1],Z,f"BEST SOL:{sol[0]},{sol[1]} ")
-        
+            ax.text(sol[0],sol[1],Z,f"BEST SOL: ({round(sol[0],5)},{round(sol[1],5)})")
         
         if ax3d is None:
             plt.show()
@@ -120,7 +122,21 @@ class BaseProblem(object):
         return '{} {}D'.format(self.name, self.dimensions)
 
         
+
+def get_problems():
+    """Returns a dictionary with key the name of the class and value the obj"""
+    exclude_names = () #set([BaseProblem])
+    classes = {}
+    for name, obj in inspect.getmembers(sys.modules[__name__]):
+        if inspect.isclass(obj):
+            if obj.__name__ not in exclude_names:
+                classes[obj.__name__] = obj
+    return classes
+
         
+####################################
+# Benchmark optimisation functions #
+####################################
 
 class Ackley(BaseProblem):
     def __init__(self, dim=2, bounds=None, default_bounds=(-5, 5), a=20, b=0.2, c=2 * np.pi):

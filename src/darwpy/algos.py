@@ -32,11 +32,11 @@ def check_convergence(func):
             slope, intercept, r_value, p_value, std_err = stats.linregress(x=list(range(start,kwargs['generations']+1)),y=fitness_profile[start:])
             print(f"The slope from {start} to end was {slope}")
             if -0.001 < slope:
-                if kwargs['verbose']:
+                if kwargs.get('verbose',None):
                     print("Likely convergence to (global) minimum...")
                 return pop,fitness_profile,slope            
             else:
-                if kwargs['verbose']:
+                if kwargs.get('verbose',None):
                     print("Will run a new iterations using the most recent pop")
 
         return pop,fitness_profile,slope
@@ -53,7 +53,7 @@ def GA(domain,fitness,N=50,nPAR=10,recomb_events=2,pS1=0.2,mut_prob=0.2,generati
         nPAR (int)         : The number of parents in each generation
         recomb_events (int): The number of recombination events
         pS1 (float)        : The proporion of elite parents [0-1 range]               
-         mut_prob (float)  : The probability to mutate each gene [0,1]
+        mut_prob (float)   : The probability to mutate each gene [0,1]
         generations (int)  : The number of generations 
         
     Returns:
@@ -70,7 +70,7 @@ def GA(domain,fitness,N=50,nPAR=10,recomb_events=2,pS1=0.2,mut_prob=0.2,generati
             tqdm = lambda x:x
 
     nKIDS = N - nPAR
-    REPORT_EVERY = int(generations/3)
+    REPORT_EVERY = round(generations/4,0)
     report_idx = [0,1,int(nPAR/2),nPAR,nPAR+int(nKIDS/5)]    ##interesting animals to print stats
     fitness_profile = []
     
@@ -95,8 +95,11 @@ def GA(domain,fitness,N=50,nPAR=10,recomb_events=2,pS1=0.2,mut_prob=0.2,generati
         pop = o.sort_pop(new_pop,fit_col=-1)
         fitness_profile.append(pop[0,-1])
         
-        if gen %  REPORT_EVERY == 0:
-            print(f"pop@{gen} [gen,fitness]: {['{}->{}'.format(ri,list(pop[ri,-2:])) for ri in report_idx]}")
+        try:
+            if gen %  REPORT_EVERY == 0:
+                print(f"pop@{gen} [gen,fitness]: {['{}->{}'.format(ri,list(pop[ri,-2:])) for ri in report_idx]}")
+        except ZeroDivisionError:
+            pass
 
         ## experimental, probably remove [it allows to refresh domain, ie the sample function]
         if domain_gen:
