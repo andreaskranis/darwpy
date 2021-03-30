@@ -4,9 +4,7 @@ A light-weight, yet flexible library for optimisation using Evolutionary Algorit
 
 Currently only a Genetic Algorithm has been fully implemented. An experimental implementation of the [Firefly optimisation algorithm](https://en.wikipedia.org/wiki/Firefly_algorithm) is also included. More algorthms, such as the Differential Evolution, will be implemented in the future.
 
-[Yabox](https://github.com/pablormier/yabox) has been used as a paradigm for implementing Evolutionary Algorithms in Python. Darwpy models can be adapted to yabox ones and vice-versa. Check the notebooks for examples. The formulaiton of the test problems is heavily based from the code provided in yabox.
-
-
+There are several Python packages for optimisation. A good example is [Yabox](https://github.com/pablormier/yabox)  that provides a user-friendly implementation of  Evolutionary Algorithms in Python. Darwpy models can be adapted to the yabox ones and vice-versa. Check the notebooks for examples. The formulaiton of the test problems is heavily based from the code provided in yabox.
 
 Below is an example of finding the optimal solution for the ["Eggholder" function](https://www.sfu.ca/~ssurjano/egg.html). After 2000 iterations, darwpy GA converged very close to the global minimum.
 
@@ -26,7 +24,7 @@ pip install -e darwpy/
 
 See the the notebooks and scripts in the *example/* folder to get an overview using well known functions. For more functions, see this [extensive resource](https://www.sfu.ca/~ssurjano/optimization.html).
 
-In the simplest approach, user needs to specify a dictionary to describe the domain and a cost function. The domain dictionary has a special structure, as seen in the code snipper below
+In the simplest approach, user needs to specify a dictionary to describe the domain and a cost function. The domain dictionary has a special structure, as seen in the code snippet below.
 
 
 ```python
